@@ -29,6 +29,8 @@ Instead you must enclose it in quotes when providing it to the batch script as s
 
     "Z:\Documents\My C++\Programs and stuff"
 
+When providing your script name, you may choose to either include or omit the `.cpp` extension.
+
 If the VS compiler fails to compile your C++ program, the script will tell you that it fail to compile and wait for your response on what to do next (either if you wish to recompile or proceed to attempt to compiler another script).
 
 Once your program compiles successfully, you can choose to run it, move on, or recompile.
