@@ -1,7 +1,9 @@
 # VS CompileForMe
- A batch script for compiling C++ program using Visual Studio's C++ compiler. Created because by default Visual Studio has no way to compile one-off scripts for you without opening its terminal and using `cl /EHsc` for everything, and so that initially became really tedious when attempting to learn C++ through all the little scripts the textbook would provide.
+ A batch script for compiling C++ program using Visual Studio's C++ compiler. Created because by default Visual Studio has no way to compile one-off scripts for you without opening its terminal and using `cl /EHsc` for everything, and so that initially became really tedious when attempting to learn C++ through all the little scripts a textbook would provide.
 
 ## Setup
+
+*This program assumes you have Visual Studio installed. This script has not been tested outside of the Windows 11 Version 23H2 environment.*
 
 Download the file `CompileForMe.bat` provided in this repository.
 
@@ -31,10 +33,10 @@ Instead you must enclose it in quotes when providing it to the batch script as s
 
 When providing your script name, you may choose to either include or omit the `.cpp` extension.
 
-If the VS compiler fails to compile your C++ program, the script will tell you that it fail to compile and wait for your response on what to do next (either if you wish to recompile or proceed to attempt to compiler another script).
+If the VS compiler fails to compile your C++ program, the script will tell you that it failed to compile and will wait for your response on what to do next (either proceed to recompile or attempt to compile another script).
 
 Once your program compiles successfully, you can choose to run it, move on, or recompile.
 
-At the end, you choose either to recompile the same script, use another file, use another directory, or exit the program.
+At the end, you may choose to either recompile the same script, attempt to compile another script, use another directory, or exit the program.
 
 Have fun programming!
