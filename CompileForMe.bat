@@ -67,12 +67,14 @@ echo.
 if errorlevel 1 (
 :askToRecompileAgain
     echo Program has fail to compile or an error occurred
-    echo 1. Recompile program
+    echo 1. Attempt to compile the program again
     echo 2. Choose another program to compile
     set /p choice="Choice: "
     if "%choice%"=="1" (
+        echo.
         goto recompileProgram
     ) else if "%choice%"=="2" (
+        echo.
         goto askSourceFileAgain
     ) else (
         echo ^|Invalid response, please try again.
@@ -106,13 +108,14 @@ echo 2. Choose another program to compile
 echo 3. Choose another directory
 echo 4. Exit
 set /p choice="Choice: "
-echo.
 
 if "%choice%"=="1" (
     goto recompileProgram
 ) else if "%choice%"=="2" (
+    echo.
     goto askSourceFileAgain
 ) else if "%choice%"=="3" (
+    echo.
     goto askSourceDirAgain
 ) else if "%choice%"=="4" (
     exit /b 0
