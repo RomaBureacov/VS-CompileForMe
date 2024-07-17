@@ -13,7 +13,7 @@ Before you start running the program, you must first edit a small portion of the
 
 Once you find the directory and the file, simply copy it into your clipboard, the full link you are copying should look similar to the one above, and should include the `vsvarsall.bat`.
 
-Next you will need to open the Batch script in this repository, `CompileForMe.bat`, in a text editor. Simply right-click it and choose *Edit* or open it with your preferred text editor.
+Next you will need to open the Batch script you downloaded from this repository, `CompileForMe.bat`, in a text editor. Simply right-click it and choose *Edit* or open it with your preferred text editor.
 
 You will navigate to one of the very first lines of code that starts with the command `call`. From here, you will paste your file directory over the one in the script, such that it will call the Visual Studio environment correctly when it comes time to compile.
 
@@ -31,7 +31,16 @@ Instead you must enclose it in quotes when providing it to the batch script as s
 
     "Z:\Documents\My C++\Programs and stuff"
 
-When providing your script name, you may choose to either include or omit the `.cpp` extension.
+When providing your script name, you may choose to either include or omit the `.cpp` extension. Quoting is not necessary when providing script names and should be omitted. Spaces are considered part of the full name.
+
+Both of the following would be valid program names to provide to the script:
+
+    Program 8-34
+    Program 8-34.cpp
+
+The following, however, would *not* be a valid program name to provide to the script:
+
+    "Program 8-34.cpp"
 
 If the VS compiler fails to compile your C++ program, the script will tell you that it failed to compile and will wait for your response on what to do next (either proceed to recompile or attempt to compile another script).
 
