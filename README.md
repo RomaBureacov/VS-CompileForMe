@@ -5,49 +5,52 @@
 
 *This program assumes you have Visual Studio installed. This script has not been tested outside of the Windows 11 Version 23H2 environment.*
 
-Download the file `CompileForMe.bat` provided in this repository.
+Download the Batch script `CompileForMe.bat` provided in this repository.
 
-Before you start running the program, you must first edit a small portion of the program. You will need to find the location of the Visual Studio C++ environment so that you can compile scripts into executables. The file you are looking for is called `vsvarsall.bat`, and it will be located in approximately the same directory as 
+**Before you start running the script, you must first edit a small portion of it.**
+
+You will need to find the location of the Visual Studio C++ environment so thatthe script can compile your C++ programs into executables. The file you are looking for is called `vsvarsall.bat`, and it will be located in *approximately* the same directory as 
 
     C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat
 
-Once you find the directory and the file, simply copy it into your clipboard, the full link you are copying should look similar to the one above, and should include the `vsvarsall.bat`.
+Once you find the directory of the file, simply copy the directory into your clipboard; the full link you are copying should look similar to the one above, and should include the `vcvarsall.bat`.
 
-Next you will need to open the Batch script you downloaded from this repository, `CompileForMe.bat`, in a text editor. Simply right-click it and choose *Edit* or open it with your preferred text editor.
+Next you will need to open the Batch script you downloaded from this repository, `CompileForMe.bat`, in a text editor. Simply right-click it and choose *Edit* to open it in Notepad or open it with your preferred text editor.
 
-You will navigate to one of the very first lines of code that starts with the command `call`. From here, you will paste your file directory over the one in the script, such that it will call the Visual Studio environment correctly when it comes time to compile.
+You will navigate to one of the very first lines of code that starts with the command `call`. From here, you will paste the directory of `vcvarsall.bat` over the one in the script, such that the script can call the Visual Studio environment correctly when it comes time to compile your C++ programs.
+
+The resulting line should look something similar to the following:
+
+    call "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64
 
 You have now successfully set up the program and are free to compile your short, one-off scripts!
 
 ## Use
 
-Simply follow the instructions the program provides. Note that when it asks for the directory, it is sensitive to spaces, so if your directory includes spaces, *you must enclose the directory in quotes*.
+Simply follow the instructions the program provides. 
 
-For example, an invalid directory name would be:
+When the program prompts for the directory, quotations are optional.
+
+For example, both of the following would be valid source directories to provide to the program:
 
     Z:\Documents\My C++\Programs and stuff
-
-Instead you must enclose it in quotes when providing it to the batch script as such:
-
     "Z:\Documents\My C++\Programs and stuff"
 
-When providing your script name, you may choose to either include or omit the `.cpp` extension. Quoting is not necessary when providing script names and should be omitted. Spaces are considered part of the full name.
+When providing your script name, the `.cpp` extension is optional. Quoting is also optional. The file name you provide is also *case in-sensitive*.
 
-Both of the following would be valid program names to provide to the script:
+All of the following would be valid file names to provide to the script (assuming the source file is named `Program 8-34.cpp`):
 
     Program 8-34
     Program 8-34.cpp
-
-The following, however, would *not* be a valid program name to provide to the script:
-
+    "Program 8-34"
     "Program 8-34.cpp"
 
-If the VS compiler fails to compile your C++ program, the script will tell you that it failed to compile and will wait for your response on what to do next (either proceed to recompile or attempt to compile another script).
+Should the VS compiler fail to compile your C++ program, the script will notify you and will await your response on what to do next (either attempt to compile again or attempt to compile another script).
 
 Once your program compiles successfully, you can choose to run it, move on, or recompile.
 
-If you run the program, upon its termination simply type the command `exit` into the terminal to close the new window the compiled program was opened in—should you prefer to close it without using the mouse.
+If you choose to run the program, it will open in a new cmd window. Upon the compiled program's termination, you can either close the window with the mouse or simply type the command `exit` into the terminal.
 
-At the end, you may choose to either recompile the same script, attempt to compile another script, use another directory, or exit the program.
+At the end of the script, you may choose to either recompile the same script, attempt to compile another script, use another directory, or exit the program.
 
 Have fun programming!
