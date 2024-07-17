@@ -13,9 +13,9 @@ Before you start running the program, you must first edit a small portion of the
 
 Once you find the directory and the file, simply copy it into your clipboard, the full link you are copying should look similar to the one above, and should include the `vsvarsall.bat`.
 
-Next you will need to open the `.bat` file in a text editor. Simply right-click and choose *Edit* or open with your preferred text editor.
+Next you will need to open the Batch script in this repository, `CompileForMe.bat`, in a text editor. Simply right-click it and choose *Edit* or open it with your preferred text editor.
 
-You will navigate to one of the very first lines of code that starts with `call`. From here, you will paste your file directory over the one in the script, such that it will call the Visual Studio environment correctly when it comes time to compile.
+You will navigate to one of the very first lines of code that starts with the command `call`. From here, you will paste your file directory over the one in the script, such that it will call the Visual Studio environment correctly when it comes time to compile.
 
 You have now successfully set up the program and are free to compile your short, one-off scripts!
 
