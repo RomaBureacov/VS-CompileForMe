@@ -16,7 +16,7 @@ echo.
 
 :: Prompt for the source directory
 :askSourceDirAgain
-set /p "source_dir=Enter source directory: "
+set /p "source_dir=>Enter source directory: "
 
 :: Remove quotes if implemented
 set "source_dir=%source_dir:"=%"
@@ -29,7 +29,7 @@ echo ^|Source directory found: "%source_dir%"
 echo.
 
 :askSourceFileAgain
-set /p "source_file=Enter cpp file name: "
+set /p "source_file=>Enter cpp file name: "
 
 :: determine if file name with or without .cpp  provided
 set source_file_name=%source_file%
@@ -58,9 +58,11 @@ if not exist "%output_dir%" (
 echo ^|attempting to compile into: "%output_dir%\%source_file_name%.exe"
 echo.
 
-echo ==================== COMPILER ====================
+echo =====
+echo ==================== COMPILER BEGIN ====================
 cl /EHsc "%source_dir%\%source_file%" /Fo"%output_dir%\\" /Fe"%output_dir%\%source_file_name%.exe"
-echo ==================== END COMPILER ====================
+echo ====================  COMPILER END  ====================
+echo =====
 echo.
 
 :: should the program fail to compile
@@ -69,7 +71,7 @@ if errorlevel 1 (
     echo Program has fail to compile or an error occurred
     echo 1. Attempt to compile the program again
     echo 2. Choose another program to compile
-    set /p choice="Choice: "
+    set /p choice=">Choice: "
     if "%choice%"=="1" (
         echo.
         goto recompileProgram
@@ -87,7 +89,7 @@ if errorlevel 1 (
 
 :: ask to run the compiled program
 :askToRunAgain
-set /p runProgram="Run the compiled program or recompile? (y/n/r): "
+set /p runProgram=">Run the compiled program or recompile? (y/n/r): "
 if /i "%runProgram%"=="y" (
     echo ^|Attempting to run: "%output_dir%\%source_file_name%.exe"
     start "%source_file_name%" /d "%output_dir%" cmd /k "%source_file_name%.exe"
@@ -107,7 +109,7 @@ echo 1. Recompile
 echo 2. Choose another program to compile
 echo 3. Choose another directory
 echo 4. Exit
-set /p choice="Choice: "
+set /p choice=">Choice: "
 
 if "%choice%"=="1" (
     goto recompileProgram

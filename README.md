@@ -37,6 +37,8 @@ If the VS compiler fails to compile your C++ program, the script will tell you t
 
 Once your program compiles successfully, you can choose to run it, move on, or recompile.
 
+If you run the program, upon its termination simply type the command `exit` into the terminal to close the new window the compiled program was opened in—should you prefer to close it without using the mouse.
+
 At the end, you may choose to either recompile the same script, attempt to compile another script, use another directory, or exit the program.
 
 Have fun programming!
