@@ -1,0 +1,11 @@
+# find your direcotry of the folder `VC` in your installation path of Visual Studio
+VS_dir=Z:\Applications\Visual Studio IDE\VC
+# set the C++ standard for the compiler to use (change number to either 14, 17, 20, or latest)
+# e.g.: cpp_standard=c++latest
+cpp_standard=c++latest
+# 1 to support std module, 0 to not support the std module 
+# (std module will automatically will be unsupported for outdated Visual Studio versions or for C++ standards prior to 20)
+std_module_support=1
+# send the parameters to a new window, where the same program will compile to reduce text clutter 
+# 1 to compile in a new window, 0 to compile in the working window where you run the main CompileForMe.bat script
+compile_in_new_window=1
