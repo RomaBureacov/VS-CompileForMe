@@ -9,3 +9,6 @@ std_module_support=1
 # send the parameters to a new window, where the same program will compile to reduce text clutter 
 # 1 to compile in a new window, 0 to compile in the working window where you run the main CompileForMe.bat script
 compile_in_new_window=1
+# sets the switch warning level for the compiler
+# see: https://learn.microsoft.com/en-us/cpp/build/reference/compiler-option-warning-level?view=msvc-170
+warning_level=/W3
