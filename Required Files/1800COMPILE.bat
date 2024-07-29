@@ -111,9 +111,6 @@ if /i "%choice%"=="1" (
         goto :askSourceFileAgain
     )
     echo ^| File found: "%source_dir%\!source_file!"
-    echo source file : !source_file!
-    pause
-    pause
     goto :recompileProgram
 ) else if /i "%choice%"=="3" (
     goto :recompileProgram

@@ -2,8 +2,8 @@
 setlocal enabledelayedexpansion
 title VS-CompileForMe
 echo ~  ~ ~ ~~~~~-----==========-----~~~~~ ~ ~  ~
-echo Script by Roman Bureacov
-echo Script revision 7/29/2024
+echo           Script by Roman Bureacov
+echo           Script revision 7/29/2024
 echo.
 
 @REM change to current working directory
