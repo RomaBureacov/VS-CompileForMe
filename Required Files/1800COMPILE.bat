@@ -31,12 +31,13 @@ if not exist "%output_dir%" (
 echo ^| Attempting to compile into: "%output_dir%\!source_file_name!.exe"
 echo.
 
+set /a compiler_error=0
 echo =====
 echo ==================== COMPILER BEGIN ====================
 @REM if modules are supported
 if !module_support!==1 (
     cl /c /reference "std=%~dp0\std.ifc" /std:c++latest !warning_level! /EHsc "!source_dir!\!source_file!" /Fo"!output_dir!\\"
-    if !errorlevel! neq 0 goto :askToRecompileAgain
+    set /a compiler_error+=!errorlevel!
     link  "!output_dir!\!source_file_name!.obj" "%~dp0\std.obj" /OUT:"!output_dir!\!source_file_name!.exe"
 ) else (
     cl /std:!cpp_standard! !warning_level! /EHsc "!source_dir!\!source_file!" /Fo"!output_dir!\\" /Fe"!output_dir!\!source_file_name!.exe"
@@ -47,18 +48,23 @@ echo.
 
 
 @REM should the program fail to compile
-if !errorlevel! neq 0 (
+set /a compiler_error+=!errorlevel!
+if !compiler_error! neq 0 (
     :askToRecompileAgain
     color 0c
     setlocal disabledelayedexpansion
-    echo ! Program has failed to compile or an error occurred
-    setlocal enabledelayedexpansion
+    echo Program has failed to compile or an error occurred
+    endlocal
     echo 1. Attempt to compile the program again
-    echo 2. Choose another program to compile ^(exits this window back to main window^)
-    set /p choice="> Choice: "
-    if "%choice%"=="1" (
+    echo 2. Compile another program under the same directory
+    echo 3. Exit this window
+    set /p "choice=> Choice: "
+    if "!choice!"=="1" (
         goto :recompileProgram
-    ) else if "%choice%"=="2" (
+    ) else if "!choice!"=="2" (
+        color
+        goto :askSourceFileAgain
+    ) else if "!choice!"=="3" (
         exit 1
     ) else (
         echo ^| Invalid response, please try again.
@@ -67,7 +73,7 @@ if !errorlevel! neq 0 (
 ) else (
     setlocal disabledelayedexpansion
     echo ! Program successfully compiled
-    setlocal enabledelayedexpansion
+    endlocal
 )
 
 
@@ -81,7 +87,7 @@ echo 4. Exit this window
 set /p choice="> choice: "
 if /i "%choice%"=="1" (
     echo ^| Attempting to run: "%output_dir%\!source_file_name!.exe"
-    start "!source_file_name!" /d "%output_dir%" cmd /k "!source_file_name!.exe & pause & exit 0"
+    start "!source_file_name!" /d "%output_dir%" cmd /c ""!source_file_name!.exe" & echo. & echo. & pause"
     echo.
     goto :askToRunAgain
 ) else if /i "%choice%"=="2" (

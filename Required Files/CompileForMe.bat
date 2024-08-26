@@ -3,7 +3,7 @@ setlocal enabledelayedexpansion
 title VS-CompileForMe
 echo ~  ~ ~ ~~~~~-----==========-----~~~~~ ~ ~  ~
 echo           Script by Roman Bureacov
-echo           Script revision 7/29/2024
+echo           Script revision 8/26/2024
 echo.
 
 @REM change to current working directory
@@ -13,7 +13,7 @@ cd /d "%~dp0"
 if not exist "parameters.dat" (
     setlocal disabledelayedexpansion
     echo ! File "parameters.dat" not found
-    setlocal enabledelayedexpansion
+    endlocal
     goto :exitProgram
 )
 
@@ -66,7 +66,7 @@ if not exist "%VS_dir%" (
     echo ! Found file path "%VS_dir%"
     echo ! Using standard: %cpp_standard%
 )
-setlocal enabledelayedexpansion
+endlocal
 echo.
 
 if %compile_in_new_window%==0 (
@@ -81,7 +81,7 @@ if %compile_in_new_window%==0 (
         setlocal disabledelayedexpansion
         echo ! Successfully loaded environment
     )
-    setlocal enabledelayedexpansion
+    endlocal
 )
 
 @REM fetch the visual studio version by creating a temporary file to fetch the output of the vcvarsall.bat
@@ -127,7 +127,7 @@ if /i "!cpp_standard:~3!" neq "latest" (
             setlocal disabledelayedexpansion
             echo ! std module support requested, but support only works with standard C++20 or later ^(Requested standard: C++%cpp_standard:~3%^)
             echo ^| Skipping std module support...
-            setlocal enabledelayedexpansion
+            endlocal
         )
         goto :skipModuleSupport
     )
@@ -139,7 +139,7 @@ set /a module_support=0
 if "%std_module_support%"=="1" (
     setlocal disabledelayedexpansion
     echo ! Use of module std requires Visual Studio 2022, version 17.5 or later
-    setlocal enabledelayedexpansion
+    endlocal
 
     @REM echoes errors, workaround is to let it get stale since it's being made in %TEMP% anyways
     @REM if exist "%_temp_file%" del "%_temp_file%"
@@ -268,7 +268,7 @@ if !compile_in_new_window!==0 (
         :askToRecompileAgain
         setlocal disabledelayedexpansion
         echo ! Program has failed to compile or an error occurred
-        setlocal enabledelayedexpansion
+        endlocal
         echo 1. Attempt to compile the program again
         echo 2. Choose another program to compile
         set /p choice="> Choice: "
@@ -288,7 +288,7 @@ if !compile_in_new_window!==0 (
     ) else (
         setlocal disabledelayedexpansion
         echo ! Program successfully compiled
-        setlocal enabledelayedexpansion
+        endlocal
     )
 
     @REM ask to run the compiled program
@@ -300,7 +300,7 @@ if !compile_in_new_window!==0 (
     set /p choice="> choice: "
     if "!choice!"=="1" (
         echo ^| Attempting to run: "%output_dir%\%source_file_name%.exe"
-        start "%source_file_name%" /d "%output_dir%" cmd /k "%source_file_name%.exe & pause & exit 0"
+        start "!source_file_name!" /d "%output_dir%" cmd /c ""!source_file_name!.exe" & echo. & echo. & pause"
     ) else if "!choice!"=="2" (
         goto :recompileProgram
     ) else if "!choice!"=="3" (
@@ -314,7 +314,7 @@ if !compile_in_new_window!==0 (
     echo.
     setlocal disabledelayedexpansion
     echo ! Calling compiling script...
-    setlocal enabledelayedexpansion
+    endlocal
     start "Compiling Window" cmd /k ^
         "1800COMPILE.bat !module_support! !cpp_standard! !warning_level! ^"!source_dir!^" ^"!source_file!^" ^"!source_file_name!^" ^"!output_dir!^" ^"!VS-dir!^""
 )
